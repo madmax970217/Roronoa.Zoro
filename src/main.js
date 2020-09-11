@@ -16,6 +16,10 @@ import qrcode from 'vue-qrcode-directive'
 
 import { Scrollbar, Menu, Submenu, MenuItem, MenuItemGroup } from 'element-ui'
 
+//引入ECHARTS
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
+
 Vue.component(CollapseTransition.name, CollapseTransition)
 
 

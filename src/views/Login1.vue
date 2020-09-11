@@ -35,7 +35,7 @@
                 <i slot="prefix" class="el-input__icon el-icon-lock"></i>
               </el-input>
             </div>
-            <el-button @click="toLogin1">登录</el-button>
+            <el-button @click="toHome">登录</el-button>
           </div>
         </div>
       </div>
@@ -45,7 +45,7 @@
 
 <script>
 export default {
-  name: "login",
+  name: "login1",
   data() {
     return {
       username: "",
@@ -53,7 +53,7 @@ export default {
       imgs: [
         {
           url: "",
-          img: "/images/work.png",
+          img: "/images/space1.png",
         },
         // {
         //   url: "",
@@ -61,27 +61,27 @@ export default {
         // },
         {
           url: "",
-          img: "/images/office.png",
+          img: "/images/space2.png",
         },
         {
           url: "",
-          img: "/images/work1.png",
+          img: "/images/space3.png",
         },
         {
           url: "",
-          img: "/images/contact.png",
+          img: "/images/space4.png",
         },
       ],
       callleft: 0,
     };
   },
   methods: {
-    toLogin1() {
-      this.$router.push("/login1");
+    toHome() {
+      this.$router.push("/home");
     },
   },
 };
 </script>
 <style lang="scss" scoped>
-@import "@/style/login.scss";
+@import "@/style/login1.scss";
 </style>
