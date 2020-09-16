@@ -1,58 +1,8 @@
 <template>
+<!-- 主页 -->
   <div class="about">
-    <div class="left">
-      <img src="images/bg.png" alt="" />
-      <el-row class="tac">
-        <el-col :span="24">
-          <el-menu
-            class="menu"
-            active-text-color="#3f3d56"
-            @open="handleOpen"
-            @close="handleClose"
-          >
-            <el-menu-item index="1">
-              <i class="iconfont icon-home"></i>
-              <span slot="title" @click="toHome">主页</span>
-            </el-menu-item>
-            <el-menu-item index="2">
-              <i class="iconfont icon-tongji"></i>
-              <span slot="title" @click="ToWalking">统计</span>
-            </el-menu-item>
-
-            <el-menu-item index="3">
-              <i class="iconfont icon-upload"></i>
-              <span slot="title">上传</span>
-            </el-menu-item>
-            <el-menu-item index="4">
-              <i class="iconfont icon-setting"></i>
-              <span>设置</span>
-            </el-menu-item>
-          </el-menu>
-        </el-col>
-      </el-row>
-    </div>
-    <div class="hi">
-      <img
-        src="images/astronaut.png"
-        width="50px"
-        height="50px"
-        style="float:left;margin-left:15px"
-      />
-      <div class="welcome">欢迎进入银河系观光指南</div>
-      <div class="tip">
-        <el-button
-          type="text"
-          style="color:#3f3d56"
-          icon="el-icon-message-solid"
-          >消息</el-button
-        >
-        <el-button type="text" style="color:#3f3d56" icon="el-icon-user-solid"
-          >超级管理员</el-button
-        >
-      </div>
-    </div>
     <div class="top">
-      <avue-data-tabs :option="Option"></avue-data-tabs>
+      <avue-data-rotate :option="Option"></avue-data-rotate>
     </div>
     <div id="myChart"></div>
     <div class="echart">
@@ -66,19 +16,14 @@
 </template>
 
 <script>
-import { Option, edata } from "@/js/home.js";
+import { Option, edata, config } from "@/js/home.js";
 export default {
   name: "home",
   data() {
     return {
       Option: Option,
-      edata:edata,
-      config: {
-        minFontSize: 30,
-        maxFontSize: 80,
-        split: 30,
-        rotate: true,
-      },
+      edata: edata,
+      config: config,
     };
   },
   methods: {
@@ -88,10 +33,11 @@ export default {
     handleClose(key, keyPath) {
       console.log(key, keyPath);
     },
-    ToWalking() {
-      this.$router.push({
-        name: "走马灯",
-      });
+    ToSubscribe() {
+      // this.$router.push({
+      //   name: "走马灯",
+      // });
+      this.$router.push("/subscribe");
     },
     toHome() {
       this.$router.push("/home");
@@ -127,7 +73,7 @@ export default {
           // Map the score column to color
           dimension: 0,
           inRange: {
-            color: ["#D7DA8B", "#E15457"],
+            color: ["#79baf5", "#4174bc"],
           },
         },
         series: [

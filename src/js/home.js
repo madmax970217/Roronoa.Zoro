@@ -1,46 +1,47 @@
+// 主页
 export const Option = {
+  span: 6,
   data: [
     {
-      title: "分类统计",
-      subtitle: "实时",
-      count: 7993,
-      allcount: 10222,
-      text: "当前分类总记录数",
-      color: "#4cc3d8",
-      key: "类",
-    },
-    {
-      title: "附件统计",
-      subtitle: "实时",
-      count: 3112,
-      allcount: 10222,
-      text: "当前上传的附件数",
-      color: "#f49e5d",
-      key: "附",
-    },
-    {
-      title: "文章统计",
-      subtitle: "实时",
-      count: 908,
-      allcount: 10222,
-      text: "评论次数",
-      color: "#8a9fdc",
-      key: "评",
+      count: '150',
+      title: '门禁总数量',
+      icon: 'iconfont icon-menjinxitong',
+      color: '#cbdcf7'
+    }, {
+      count: '93',
+      title: '门禁授权账户',
+      icon: 'iconfont icon-kechengshouquan',
+      color: '#cbdcf7'
+    }, {
+      count: '47',
+      title: '用户注册数',
+      icon: 'iconfont icon-zhucehaoxiafa',
+      color: '#cbdcf7'
+    }, {
+      count: '16',
+      title: '今日访客数',
+      icon: 'iconfont icon-fangke',
+      color: '#cbdcf7'
     },
   ],
 };
 
 export const edata = [
-  {
-    name: "Roronoa·Zoro",
+  // {
+  //   name: "Roronoa·Zoro",
+  //   value: 19651,
+  // },
+    {
+    name: "索隆",
     value: 19651,
   },
   {
-    name: "モンキーD·ルフィ",
+    // name: "モンキーD·ルフィ",
+    name: "路飞",
     value: 18341,
   },
   {
-    name: "Nami",
+    name: "娜美",
     value: 17319,
   },
   {
@@ -52,11 +53,11 @@ export const edata = [
     value: 11638,
   },
   {
-    name: "托尼托尼.乔巴",
+    name: "乔巴",
     value: 10608,
   },
   {
-    name: "妮可.罗宾",
+    name: "罗宾",
     value: 8298,
   },
   {
@@ -68,3 +69,9 @@ export const edata = [
     value: 7440,
   }
 ]
+export const config= {
+  minFontSize: 30,
+  maxFontSize: 80,
+  split: 30,
+  rotate: true,
+}

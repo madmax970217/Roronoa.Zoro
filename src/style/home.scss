@@ -1,59 +1,17 @@
+// 主页样式
 .about {
-
-  .left {
-    position: relative;
-    float: left;
-    width: 10%;
-    text-align: left;
-    height: 929px;
-    // height: 100%;
-    background-color: #cbdcf7;
-    img {
-      width: 100%;
-      height: 15%;
-    }
-    .tac {
-      height: 79%;
-      // text-align: center;
-    .menu {
-      height: 100%;
-      background-color: #cbdcf7;
-      .el-menu-item {
-        // margin-left: 10px;
-      }
-      i {
-        margin-left: 30px;
-        margin-right: 20px;
-      }
-      /deep/.el-menu-item-group__title {
-        padding-top: -1px;
-      }
-    }
-  }
-  }
-  .hi {
-    float: left;
-    width: 88.5%;
-    height: 50px;
-    margin: 0 0  10px 15px;
-    border-radius: 4px;
-    background-color: #f7f8fa;
-    .welcome {
-      float: left;
-      margin: 10px 10px 10px 20px;
-      color: #3f3d56;
-    }
-    .tip {
-      float: right;
-      margin: 5px 10px 0 0;
-    }
-  }
   .top {
     float: left;
     width: 90%;
     /deep/.el-col-md-8 {
       margin-top: -15px;
     }
+    /deep/.avue-data-rotate .item {
+        color:#3f3d56
+    }
+    /deep/.avue-data-rotate .item-more {
+      color:#3f3d56
+  }
   }
   #myChart {
     float: left;

@@ -1,0 +1,38 @@
+// 预约样式
+.basic {
+  .subForm {
+    position: relative;
+    float: left;
+    left: 5px;
+    // width: 65%;
+    width: 90%;
+    // padding: 0 30px 0 70px;
+    /*必填项星号居中*/
+    /deep/.el-form-item__label:before {
+      position: relative;
+      top: 3px;
+    }
+    /*表单标题前蓝色方块*/
+    /deep/.avue-group__title:before {
+      content: "▇";
+      color: #409eff;
+      margin-right: 4px;
+    }
+    .photo {
+      .title {
+        position: relative;
+        margin-left: -1580px;
+        font-size: 16px;
+      }
+      .title:before {
+        content: "▇";
+      color: #409eff;
+      margin-right: 4px;
+      }
+      .el-divider--horizontal {
+        margin: 15px 0 33px 20px;
+        width: 97%;
+      }
+    }
+  }
+}
