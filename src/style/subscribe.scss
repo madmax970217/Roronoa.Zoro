@@ -34,5 +34,18 @@
         width: 97%;
       }
     }
+    /deep/.el-icon-check:before  {
+      content: ""
+    }
+    /deep/.el-icon-delete:before  {
+      content: ""
+    }
+    /deep/.el-button {
+      border: 1px solid #409eff;
+      color:#409eff
+    }
+    /deep/.el-button--primary {
+      color: #fff;
+    }
   }
 }

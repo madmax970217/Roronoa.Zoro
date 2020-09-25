@@ -47,8 +47,6 @@ var DIC = {
 };
 
 export const subOption = {
-  emptyBtn: false,
-  submitBtn: false,
   card: true,
   group: [
     {
@@ -60,9 +58,9 @@ export const subOption = {
           label: "访客姓名",
           prop: "visitName",
           search: true,
-          // blur:()=>{
-          //     getCode()
-          // },
+          blur: () => {
+            window.getCode();
+          },
           rules: [
             { required: true, message: "姓名不能为空", trigger: "blur" },
             { min: 2, max: 10, message: "长度在2到10个字符", trigger: "blur" },
@@ -72,10 +70,9 @@ export const subOption = {
         {
           label: "预约号",
           prop: "orderId",
-          // readonly:'readonly',
           disabled: "disabled",
           placeholder: "自动生成",
-          display:false
+          // display:false
         },
         {
           label: "手机号码",
@@ -127,14 +124,7 @@ export const subOption = {
         {
           label: "来访时间",
           prop: "startTime",
-          type: "datetime",
-          pickerOptions: {
-            disabledDate(time) {
-              return time.getTime() < Date.now();
-            },
-          },
-          format: "yyyy-MM-dd  HH:mm",
-          valueFormat: "yyyy-MM-dd  HH:mm",
+          formslot: true,
           rules: [
             { required: true, message: "来访时间不能为空", trigger: "blur" },
           ],
@@ -142,19 +132,7 @@ export const subOption = {
         {
           label: "结束时间",
           prop: "endTime",
-          type: "datetime",
-          pickerOptions: {
-            disabledDate: (time) => {
-              // let [disabledDate] = (time) =>  (return(返回值)
-              // let {startTime} = this.prop;
-              // return time.getTime() < startTime;
-              // console.log(this);
-              return time.getTime() < Date.now();
-              // return time.getTime() < this.startTime;
-            },
-          },
-          format: "yyyy-MM-dd  HH:mm",
-          valueFormat: "yyyy-MM-dd  HH:mm",
+          formslot: true,
           rules: [
             { required: true, message: "结束时间不能为空", trigger: "blur" },
           ],

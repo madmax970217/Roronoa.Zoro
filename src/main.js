@@ -19,6 +19,9 @@ import { Scrollbar, Menu, Submenu, MenuItem, MenuItemGroup } from 'element-ui'
 //引入ECHARTS
 import echarts from 'echarts'
 Vue.prototype.$echarts = echarts
+//引入uuid
+import UUID from "vue-uuid";
+Vue.use(UUID);
 
 Vue.component(CollapseTransition.name, CollapseTransition)
 

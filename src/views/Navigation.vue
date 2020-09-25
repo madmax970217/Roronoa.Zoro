@@ -1,5 +1,5 @@
 <template>
-<!-- 左侧菜单+顶部 -->
+  <!-- 左侧菜单+顶部 -->
   <div class="about">
     <div class="left">
       <img src="images/bg.png" alt />
@@ -15,12 +15,12 @@
               <i class="iconfont icon-home"></i>
               <span slot="title">主页</span>
             </el-menu-item>
-            <el-menu-item index="2" @click="ToSubscribe">
+            <el-menu-item index="2" @click="toSubscribe">
               <i class="iconfont icon-yiliaohangyedeICON-"></i>
               <span slot="title">访客预约</span>
             </el-menu-item>
 
-            <el-menu-item index="3">
+            <el-menu-item index="3" @click="toFun">
               <i class="iconfont icon-guanli"></i>
               <span slot="title">部门管理</span>
             </el-menu-item>
@@ -71,14 +71,17 @@ export default {
     handleClose(key, keyPath) {
       console.log(key, keyPath);
     },
-    ToSubscribe() {
+    toHome() {
+      this.$router.push("/home");
+    },
+    toSubscribe() {
       // this.$router.push({
       //   name: "走马灯",
       // });
       this.$router.push("/subscribe");
     },
-    toHome() {
-      this.$router.push("/home");
+    toFun() {
+      this.$router.push("/fun");
     },
   },
 };

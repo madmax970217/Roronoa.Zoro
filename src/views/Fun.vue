@@ -1,167 +1,165 @@
 <template>
   <div>
-    <h3 style="color:#42b983">分割线</h3>
-    <span>雨纷纷</span>
-    <el-divider direction="vertical"></el-divider>
-    <span>旧故里</span>
-    <el-divider direction="vertical" content-position="right"></el-divider>
-    <span>草木深</span>
-    <br />
-    <br />
-
-    <span>青春是一个短暂的美梦, 当你醒来时, 它早已消失无踪。</span>
-    <!-- <el-divider></el-divider> -->
-    <span>少量的邪恶足以抵消全部高贵的品质, 害得人声名狼藉。</span>
-    <el-divider></el-divider>
-
-    <div class="qrcode">
-      <el-button class="qrbutton" @click="Show">二维码</el-button>
-      <div class="qr" v-qr="options" v-if="options" v-show="show" />
-    </div>
-
-    <el-popconfirm title="这是一段内容确定删除吗？">
-      <el-button slot="reference">气泡</el-button>
-    </el-popconfirm>
-
-    <div class="box">
-      <div class="top">
-        <el-tooltip
-          class="item"
-          effect="dark"
-          content="Top Left 提示文字"
-          placement="top-start"
-        >
-          <el-button>上左</el-button>
-        </el-tooltip>
-        <el-tooltip
-          class="item"
-          effect="dark"
-          content="Top Center 提示文字"
-          placement="top"
-        >
-          <el-button>上边</el-button>
-        </el-tooltip>
-        <el-tooltip
-          class="item"
-          effect="dark"
-          content="Top Right 提示文字"
-          placement="top-end"
-        >
-          <el-button>上右</el-button>
-        </el-tooltip>
-      </div>
-      <div class="left">
-        <el-tooltip
-          class="item"
-          effect="dark"
-          content="Left Top 提示文字"
-          placement="left-start"
-        >
-          <el-button>左上</el-button>
-        </el-tooltip>
-        <el-tooltip
-          class="item"
-          effect="dark"
-          content="Left Center 提示文字"
-          placement="left"
-        >
-          <el-button>左边</el-button>
-        </el-tooltip>
-        <el-tooltip
-          class="item"
-          effect="dark"
-          content="Left Bottom 提示文字"
-          placement="left-end"
-        >
-          <el-button>左下</el-button>
-        </el-tooltip>
-      </div>
-      <div class="right">
-        <el-tooltip
-          class="item"
-          effect="dark"
-          content="Right Top 提示文字"
-          placement="right-start"
-        >
-          <el-button>右上</el-button>
-        </el-tooltip>
-        <el-tooltip
-          class="item"
-          effect="dark"
-          content="Right Center 提示文字"
-          placement="right"
-        >
-          <el-button>右边</el-button>
-        </el-tooltip>
-        <el-tooltip
-          class="item"
-          effect="dark"
-          content="Right Bottom 提示文字"
-          placement="right-end"
-        >
-          <el-button>右下</el-button>
-        </el-tooltip>
-      </div>
-      <div class="bottom">
-        <el-tooltip
-          class="item"
-          effect="dark"
-          content="Bottom Left 提示文字"
-          placement="bottom-start"
-        >
-          <el-button>下左</el-button>
-        </el-tooltip>
-        <el-tooltip
-          class="item"
-          effect="dark"
-          content="Bottom Center 提示文字"
-          placement="bottom"
-        >
-          <el-button>下边</el-button>
-        </el-tooltip>
-        <el-tooltip
-          class="item"
-          effect="dark"
-          content="Bottom Right 提示文字"
-          placement="bottom-end"
-        >
-          <el-button>下右</el-button>
-        </el-tooltip>
-        <br />
-        <br />
-        <el-tooltip content="Top center" placement="left">
-          <el-button>Dark</el-button>
-        </el-tooltip>
-        <el-tooltip content="Bottom center" placement="right" effect="light">
-          <el-button>Light</el-button>
-        </el-tooltip>
-      </div>
-    </div>
+    <el-tree
+      ref="expandMenuList"
+      class="expand-tree"
+      :data="setTree"
+      highlight-current
+      :props="defaultProps"
+      :expand-on-click-node="true"
+      :render-content="renderContent"
+      @node-click="handleNodeClick"
+    >
+    </el-tree>
   </div>
 </template>
 <script>
+import { list, setTree } from "@/js/fun.js";
 export default {
   data() {
     return {
-      show: false,
-      options: {
-        // text:'12345678910',
-        text: "我是内容",
-        // render: "canvas",
-        render: "table",
-        width: 256,
-        height: 256,
-        typeNumber: -1,
-        correctLevel: 2,
-        background: "#ffffff",
-        foreground: "#000000",
+      defaultProps: {
+        children: "children",
+        label: "label",
       },
+      setTree,
+      list,
+      datas: [
+        // {
+        //   id: 13,
+        //   parentId: 0,
+        //   order: 1,
+        //   name: "truck",
+        // },
+        // {
+        //   id: 16,
+        //   pluginId: null,
+        //   parentId: 0,
+        //   order: 1,
+        //   name: "sca",
+        // },
+        // {
+        //   id: 17,
+        //   pluginId: 6,
+        //   parentId: 16,
+        //   order: 1,
+        //   name: "abcf",
+        // },
+      ],
     };
   },
   methods: {
-    Show() {
-      this.show = !this.show;
+    handleNodeClick(data) {
+      console.log(data);
     },
+    // getDataList() {
+    //   this.loading = true; //element loading加载
+    //   list({}).then((res) => {
+    //     this.loading = false;
+    //     if (res.status) {
+    //       this.setTree = res.data;
+    //     } else {
+    //       this.$alert(res.message, "错误", {
+    //         confirmButtonText: "确定",
+    //       });
+    //     }
+    //   });
+    // },
+    getListData() {
+      let dataArray = [];
+      this.datas.forEach(function(data) {
+        if (data.enabled == true) {
+          let parentId = data.parentId;
+          if (parentId == 0) {
+            let objTemp = {
+              id: data.id,
+              name: data.name,
+              order: data.order,
+              parentId: parentId,
+            };
+            dataArray.push(objTemp);
+          }
+        }
+      });
+      this.data2treeDG(this.datas, dataArray);
+    },
+    data2treeDG(datas, dataArray) {
+      for (let j = 0; j < dataArray.length; j++) {
+        let dataArrayIndex = dataArray[j];
+        let childrenArray = [];
+        let Id = dataArrayIndex.id;
+        for (let i = 0; i < datas.length; i++) {
+          let data = datas[i];
+          if (data.enabled == true) {
+            let parentId = data.parentId;
+            if (parentId == Id) {
+              //判断是否为儿子节点
+              let objTemp = {
+                id: data.id,
+                name: data.name,
+                order: data.order,
+                parentId: parentId,
+              };
+              childrenArray.push(objTemp);
+            }
+          }
+        }
+        dataArrayIndex.children = childrenArray;
+        if (childrenArray.length > 0) {
+          //有儿子节点则递归
+          this.data2treeDG(datas, childrenArray);
+        }
+      }
+      this.setTree = dataArray;
+      return dataArray;
+    },
+    showOrEdit(data) {
+      // debugger;
+      if (this.isEdit) {
+        return (
+          <input
+            type="text"
+            style="width:80px"
+            value={data.Name}
+            on-blur={(ev) => this.edit_sure(ev, data)}
+          />
+        );
+      } else {
+        return <span>{data.Name}</span>;
+      }
+    },
+    // renderContent(h, { node, data, store }) {
+    renderContent(h, { node, data }) {
+      if (data.enabled == true && data.parentId == 0) {
+        return (
+          <span>
+            <span>{this.showOrEdit(data)}</span>
+            <span style="margin-left: 15px;">
+              <i
+                class="el-icon-plus"
+                on-click={() => this.NodeAdd(node, data)}
+              ></i>
+            </span>
+          </span>
+        );
+      } else if (data.enabled == true && data.parentId != 0) {
+        return (
+          <span>
+            <span>{this.showOrEdit(data)}</span>
+          </span>
+        );
+      } else {
+        return (
+          <span>
+            <span style="color: red;">{this.showOrEdit(data)}</span>
+          </span>
+        );
+      }
+    },
+  },
+  mounted: function() {
+    this.getListData();
+    console.log(this.setTree);
   },
 };
 </script>

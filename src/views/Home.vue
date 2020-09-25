@@ -27,21 +27,6 @@ export default {
     };
   },
   methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    ToSubscribe() {
-      // this.$router.push({
-      //   name: "走马灯",
-      // });
-      this.$router.push("/subscribe");
-    },
-    toHome() {
-      this.$router.push("/home");
-    },
     drawLine() {
       // 基于准备好的dom，初始化echarts实例
       var myChart = this.$echarts.init(document.getElementById("myChart"));

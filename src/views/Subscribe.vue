@@ -2,10 +2,16 @@
   <!-- 预约界面 -->
   <div class="basic">
     <div class="subForm">
+      <!-- 图像信息 -->
       <div class="photo">
         <span class="title">图像信息</span>
         <el-divider></el-divider>
-        <el-upload action="#" list-type="picture-card" :auto-upload="false" :limit="1">
+        <el-upload
+          action="#"
+          list-type="picture-card"
+          :auto-upload="false"
+          :limit="1"
+        >
           <i slot="default" class="el-icon-plus"></i>
           <div slot="file" slot-scope="{ file }">
             <img class="el-upload-list__item-thumbnail" :src="file.url" alt />
@@ -25,21 +31,47 @@
               </span>
             </span>
           </div>
-          <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过1个</div>
+          <div slot="tip" class="el-upload__tip">
+            只能上传jpg/png文件，且不超过1个
+          </div>
         </el-upload>
         <el-dialog :visible.sync="dialogVisible">
           <img width="100%" :src="dialogImageUrl" alt />
         </el-dialog>
       </div>
+      <!-- 表单 -->
       <avue-form
         ref="form"
         v-model="obj0"
         :option="subOption"
         @change="Changeinfo"
+        @reset-change="resetchange"
       >
-        <template slot="menuForm">
-          <el-button type="primary" @click="handleSubmit">提 交</el-button>
-          <el-button @click="handleEmpty">清 空</el-button>
+        <template slot="startTime">
+          <div class="block">
+            <el-date-picker
+              v-model="startTime"
+              type="datetime"
+              placeholder="请输入 来访时间"
+              format="yyyy-MM-dd HH:mm:ss "
+              value-format="timestamp"
+              :picker-options="pickerOptionsStart"
+            >
+            </el-date-picker>
+          </div>
+        </template>
+        <template slot="endTime">
+          <div class="block">
+            <el-date-picker
+              v-model="endTime"
+              type="datetime"
+              placeholder="请输入 来访时间"
+              format="yyyy-MM-dd HH:mm:ss"
+              value-format="timestamp"
+              :picker-options="pickerOptionsEnd"
+            >
+            </el-date-picker>
+          </div>
         </template>
       </avue-form>
     </div>
@@ -47,24 +79,49 @@
 </template>
 
 <script>
+import { uuid } from "vue-uuid";
 import { subOption } from "@/js/subscribe.js";
 export default {
   name: "subcsribe",
   data() {
     return {
+      uuid,
       // 获取头像
       dialogImageUrl: "",
       dialogVisible: false,
       disabled: false,
 
       obj0: {},
-      subOption: subOption,
+      subOption,
       imageUrl: "",
+      pickerOptionsStart: {
+        disabledDate(time) {
+          return time.getTime() < Date.now();
+        },
+      },
+      pickerOptionsEnd: {
+        disabledDate: (time) => {
+          if (this.startTime) {
+            return time.getTime() < this.startTime;
+          }
+        },
+      },
+      // visitedTime: Date.now(),
+      startTime: "",
+      endTime: "",
     };
   },
+  mounted() {
+    window.getCode = this.getCode;
+  },
+  created() {
+    this.uuid = uuid.v1();
+  },
   methods: {
-    handleEmpty() {
+    resetchange() {
       this.$refs.form.resetForm();
+      this.endTime = null;
+      this.startTime = ""
     },
     handleSubmit() {
       this.$refs.form.validate((vaild) => {
@@ -83,6 +140,19 @@ export default {
     handlePictureCardPreview(file) {
       this.dialogImageUrl = file.url;
       this.dialogVisible = true;
+    },
+    getCode() {
+      this.uuid = this.$uuid.v1().replace(/-/g, "");
+      this.obj0.orderId = this.uuid;
+      console.log(this.uuid);
+    },
+  },
+  watch: {
+    endTime: function(val) {
+      this.obj0.endTime = val;
+    },
+    startTime: function(val) {
+      this.obj0.startTime = val;
     },
   },
 };

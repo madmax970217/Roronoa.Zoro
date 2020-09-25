@@ -36,7 +36,7 @@ const routes = [
       },
       {
         path: "/subscribe",
-        name: "subscribe",
+        name: "Subscribe",
         // component: () =>
         //     import ('@/views/Subscribe')
         component: Subscribe,
