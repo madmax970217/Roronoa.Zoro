@@ -1,84 +1,98 @@
 <template>
-  <avue-tree
-    :data="data"
-    @node-click="nodeClick"
-    @update="update"
-    @save="save"
-    @del="del"
-    v-model="form"
-  >
-    <!-- <template slot-scope="scope" slot="menuBtn">
-      <el-dropdown-item @click.native="tip(scope.node, scope.data)">自定义按钮123456789</el-dropdown-item>
-    </template> -->
-  </avue-tree>
+<!-- 抓拍 -->
+  <div class="camera-outer">
+    <el-button type="primary" @click="dialogVisible = true">获取人像</el-button>
+    <el-dialog
+      title="获取人像"
+      :visible.sync="dialogVisible"
+      width="45%"
+      :before-close="handleClose"
+    >
+      <!--开启摄像头-->
+      <el-button class="button" type="primary" @click="callCamera">开启摄像头</el-button>
+      <!--关闭摄像头-->
+      <el-button class="button" type="primary" @click="closeCamera">关闭摄像头</el-button>
+      <el-button class="button" type="primary" @click="photograph">拍照</el-button>
+      <!--图片展示-->
+      <video ref="video" autoplay></video>
+      <!--canvas截取流-->
+      <canvas ref="canvas"></canvas>
+      <!--确认-->
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogVisible = false"
+          >确 定</el-button
+        >
+      </span>
+    </el-dialog>
+  </div>
 </template>
 <script>
 export default {
-    data () {
-      return {
-          form:{},
-          data:[
-            {
-              id:0,
-              label:'一级部门',
-              value:0,
-              children:[
-                {
-                  id:1,
-                  label:'一级部门1',
-                  value:0,
-                },{
-                  id:2,
-                  label:'一级部门2',
-                  value:0,
-                }
-              ]
-            },{
-              id:3,
-              label:'二级部门',
-              value:0,
-              children:[
-                {
-                  id:4,
-                  label:'二级部门1',
-                  value:0,
-                },{
-                  id:5,
-                  label:'二级部门2',
-                  value:0,
-                }
-              ]
-            }
-          ],
-      }
+  name: "import",
+  data() {
+    return {
+      dialogVisible: false,
+    };
   },
-  methods:{
-    tip(node,data){
-        this.$message.success(JSON.stringify(data))
+  methods: {
+    // 调用摄像头
+    callCamera() {
+      // H5调用电脑摄像头API
+      navigator.mediaDevices
+        .getUserMedia({
+          video: true,
+        })
+        .then((success) => {
+          // 摄像头开启成功
+          this.$refs["video"].srcObject = success;
+          // 实时拍照效果
+          this.$refs["video"].play();
+        })
+        .catch(() => {
+          console.error("摄像头开启失败，请检查摄像头是否可用！");
+        });
     },
-    del(data,node,done){
-      this.$message.success('删除回调')
-      done();
+    // 拍照
+    photograph() {
+      let ctx = this.$refs["canvas"].getContext("2d");
+      // 把当前视频帧内容渲染到canvas上
+      ctx.drawImage(this.$refs["video"], 0, 0, 240, 150);
+      // 转base64格式、图片格式转换、图片质量压缩
+      let imgBase64 = this.$refs["canvas"].toDataURL("image/jpeg", 0.7); // 由字节转换为KB 判断大小
+
+      let str = imgBase64.replace("data:image/jpeg;base64,", "");
+      let strLength = str.length;
+      let fileLength = parseInt(strLength - (strLength / 8) * 2); // 图片尺寸  用于判断
+      let size = (fileLength / 1024).toFixed(2);
+      console.log(size); // 上传拍照信息  调用接口上传图片 .........
+
+      // 保存到本地
+      // let ADOM = document.createElement("a");
+      // ADOM.href = this.headImgSrc;
+      // ADOM.download = new Date().getTime() + ".jpeg";
+      // ADOM.click();
     },
-    update(data,node,done){
-      this.$message.success('更新回调')
-      done();
+    // 关闭摄像头
+    closeCamera() {
+      if (!this.$refs["video"].srcObject) return;
+      let stream = this.$refs["video"].srcObject;
+      let tracks = stream.getTracks();
+      tracks.forEach((track) => {
+        track.stop();
+      });
+      this.$refs["video"].srcObject = null;
     },
-    save(data,node,done){
-      this.$message.success('新增回调')
-      this.form.id = new Date().getTime();
-      this.form.value=new Date().getTime();
-      this.form.children=[];
-      done();
+    handleClose(done) {
+      this.$confirm("确认关闭？")
+        .then(() => {
+          done();
+        })
+        .catch(() => {});
     },
-    nodeClick(data){
-      this.$message.success(JSON.stringify(data))
-    }
-  }
-}
+  },
+};
 </script>
-<style lang="css" scoped>
-  .el-input-group__append{
-    display: none;
-  }
+<style lang="scss" scoped>
+@import "@/style/import.scss";
 </style>

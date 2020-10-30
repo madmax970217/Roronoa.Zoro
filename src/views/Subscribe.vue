@@ -81,6 +81,7 @@
 <script>
 import { uuid } from "vue-uuid";
 import { subOption } from "@/js/subscribe.js";
+import vPinyin from "@/js/vue-py.js";
 export default {
   name: "subcsribe",
   data() {
@@ -113,15 +114,22 @@ export default {
   },
   mounted() {
     window.getCode = this.getCode;
+    window.inputPY = this.inputPY;
   },
   created() {
     this.uuid = uuid.v1();
   },
   methods: {
+    inputPY() {
+      // let pinYin = this.form.pinyin;
+      let hubName = this.obj0.name;
+      this.obj0.pinyin = vPinyin.chineseToPinYin(hubName);
+      // this.addTrafficHub.pinYin = vPinyin.chineseToPinYin(this.addTrafficHub.hubName);
+    },
     resetchange() {
       this.$refs.form.resetForm();
       this.endTime = null;
-      this.startTime = ""
+      this.startTime = "";
     },
     handleSubmit() {
       this.$refs.form.validate((vaild) => {
@@ -154,6 +162,11 @@ export default {
     startTime: function(val) {
       this.obj0.startTime = val;
     },
+    "obj0.name": {
+      handler(val) {
+        console.log(val);
+      }
+    }
   },
 };
 </script>

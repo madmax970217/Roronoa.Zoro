@@ -1,0 +1,31 @@
+.camera-outer {
+  /deep/.el-dialog__body {
+    padding: 20px 20px;
+  }
+  .el-dialog {
+    canvas {
+      // width: 640px;
+      // height: 480px;
+      // float: left;
+      width: 440px;
+      height: 280px;
+    //   padding: 0 110px 0 0;
+      margin-left: -90px;
+      margin-top: 60px;
+    }
+    video {
+      // width: 640px;
+      // height: 480px;
+      float: left;
+      width: 440px;
+      height: 280px;
+      padding: 40px 110px 0 0;
+      margin-left: -320px;
+      margin-top: 20px;
+    }
+    .button {
+      // margin:  10px 10px 10px 10px;
+      float: left;
+    }
+  }
+}

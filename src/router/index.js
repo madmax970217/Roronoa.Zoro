@@ -10,6 +10,9 @@ import Tree from "../views/Tree.vue";
 import Fun from "../views/Fun.vue";
 import Menu1 from "../views/Menu1.vue";
 import Navigation from "../views/Navigation.vue";
+import Capture from "../views/Capture.vue";
+import Photo from "../views/Photo.vue";
+import Shuttle from "../views/Shuttle.vue";
 
 Vue.use(VueRouter);
 
@@ -66,6 +69,21 @@ const routes = [
         path: "/menu1",
         name: "Menu1",
         component: Menu1,
+      },
+      {
+        path: "/capture",
+        name: "Capture",
+        component: Capture,
+      },
+      {
+        path: "/photo",
+        name: "Photo",
+        component: Photo,
+      },
+      {
+        path: "/shuttle",
+        name: "Shuttle",
+        component: Shuttle,
       },
     ],
   },

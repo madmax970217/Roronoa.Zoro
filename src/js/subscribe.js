@@ -56,16 +56,41 @@ export const subOption = {
       column: [
         {
           label: "访客姓名",
-          prop: "visitName",
+          prop: "name",
           search: true,
+          // blur: () => {
+          //   window.getCode();
+          // },
           blur: () => {
-            window.getCode();
+            window.inputPY();
           },
           rules: [
             { required: true, message: "姓名不能为空", trigger: "blur" },
             { min: 2, max: 10, message: "长度在2到10个字符", trigger: "blur" },
             { validator: rule.validatorName, trigger: "blur" },
           ],
+        },
+        {
+          label: "密码",
+          prop: "password",
+          type:'password',
+          showPassword: true,
+          span: 8,
+        },
+        {
+          label: "多文本框",
+          prop: "textarea",
+          type: "textarea",
+          minRows: 10,
+          maxlength: 200,
+          span: 24,
+          showWordLimit: true,
+        },
+        {
+          label: "拼音",
+          prop: "pinyin",
+          disabled: "disabled",
+          placeholder: "自动生成",
         },
         {
           label: "预约号",
@@ -113,7 +138,7 @@ export const subOption = {
         {
           label: "来访原因",
           prop: "visitReason",
-        }
+        },
       ],
     },
     {

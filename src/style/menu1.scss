@@ -1,5 +1,13 @@
 .menu2 {
-    position: relative;
-    height: 870px;
-    background-color: #545c64;
+  position: relative;
+  height: 870px;
+  background-color: #545c64;
+}
+
+// 截图
+.cropper-content {
+  .cropper {
+    width: auto;
+    height: 300px;
   }
+}

@@ -24,6 +24,30 @@
               <i class="iconfont icon-guanli"></i>
               <span slot="title">部门管理</span>
             </el-menu-item>
+            <el-menu-item index="4" @click="toInfo">
+              <i class="iconfont icon-guanli"></i>
+              <span slot="title">获取人像</span>
+            </el-menu-item>
+            <el-menu-item index="4" @click="toImport">
+              <i class="iconfont icon-guanli"></i>
+              <span slot="title">抓拍</span>
+            </el-menu-item>
+            <el-menu-item index="5" @click="toMenu1">
+              <i class="iconfont icon-guanli"></i>
+              <span slot="title">远程搜索</span>
+            </el-menu-item>
+            <el-menu-item index="6" @click="toCapture">
+              <i class="iconfont icon-guanli"></i>
+              <span slot="title">图片裁剪</span>
+            </el-menu-item>
+            <el-menu-item index="7" @click="toPhoto">
+              <i class="iconfont icon-guanli"></i>
+              <span slot="title">裁剪</span>
+            </el-menu-item>
+            <el-menu-item index="8" @click="toShuttle">
+              <i class="iconfont icon-guanli"></i>
+              <span slot="title">穿梭框</span>
+            </el-menu-item>
           </el-menu>
         </el-col>
       </el-row>
@@ -82,6 +106,24 @@ export default {
     },
     toFun() {
       this.$router.push("/fun");
+    },
+    toInfo() {
+      this.$router.push("/info");
+    },
+    toImport() {
+      this.$router.push("/import");
+    },
+    toMenu1() {
+      this.$router.push("/menu1");
+    },
+    toCapture() {
+      this.$router.push("/capture");
+    },
+    toPhoto() {
+      this.$router.push("/photo");
+    },
+    toShuttle() {
+      this.$router.push("/shuttle");
     },
   },
 };

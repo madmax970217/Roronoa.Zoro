@@ -23,6 +23,18 @@ Vue.prototype.$echarts = echarts
 import UUID from "vue-uuid";
 Vue.use(UUID);
 
+import ViewUI from 'view-design';
+import 'view-design/dist/styles/iview.css';
+
+Vue.use(ViewUI);
+
+import axios from 'axios'
+Vue.prototype.$http = axios
+
+import VueCropper from 'vue-cropper'
+Vue.use(VueCropper)
+
+
 Vue.component(CollapseTransition.name, CollapseTransition)
 
 
