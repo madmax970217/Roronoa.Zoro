@@ -1,0 +1,38 @@
+.crud1 {
+    float: left;
+    margin: 10px 0 10px 10px;
+    width: 45%;
+    /deep/.avue-crud__search {
+      float: left;
+      margin-top: 20px;
+      width: 100%;
+      .el-icon-search:before,
+      .el-icon-delete:before {
+        content: "";
+      }
+    }
+    /deep/.el-button--small.is-circle {
+      display: none;
+    }
+    /deep/.avue-crud__menu {
+      min-height: 0;
+    }
+    /deep/.el-table thead {
+      height: 40px;
+    }
+    //   /deep/.el-table tr {
+    //       height: 49px;
+    //   }
+  }
+  .crud2 {
+    float: left;
+    margin: 18px 0 18px 0;
+    width: 44%;
+    /deep/.el-icon-edit:before,
+    /deep/.el-icon-delete:before {
+      content: "";
+    }
+    /deep/.el-icon-delete:before {
+      content: "|";
+    }
+  }

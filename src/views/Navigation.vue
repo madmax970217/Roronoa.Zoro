@@ -48,6 +48,26 @@
               <i class="iconfont icon-guanli"></i>
               <span slot="title">穿梭框</span>
             </el-menu-item>
+            <el-menu-item index="9" @click="toUpload">
+              <i class="iconfont icon-guanli"></i>
+              <span slot="title">图片上传</span>
+            </el-menu-item>
+            <el-menu-item index="10" @click="toCropper">
+              <i class="iconfont icon-guanli"></i>
+              <span slot="title">VueCropper</span>
+            </el-menu-item>
+            <el-menu-item index="10" @click="toMap">
+              <i class="iconfont icon-guanli"></i>
+              <span slot="title">坐标选择器</span>
+            </el-menu-item>
+            <el-menu-item index="10" @click="toRegion">
+              <i class="iconfont icon-guanli"></i>
+              <span slot="title">区域坐标</span>
+            </el-menu-item>
+            <el-menu-item index="10" @click="toVerification">
+              <i class="iconfont icon-guanli"></i>
+              <span slot="title">滑动验证</span>
+            </el-menu-item>
           </el-menu>
         </el-col>
       </el-row>
@@ -124,6 +144,21 @@ export default {
     },
     toShuttle() {
       this.$router.push("/shuttle");
+    },
+    toUpload() {
+      this.$router.push("/upload");
+    },
+    toCropper() {
+      this.$router.push("/cropper");
+    },
+    toMap() {
+      this.$router.push("/map");
+    },
+    toRegion() {
+      this.$router.push("/region");
+    },
+    toVerification() {
+      this.$router.push("/verification");
     },
   },
 };

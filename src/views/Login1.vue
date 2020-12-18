@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <!-- 走马灯 -->
+    <!-- 银河走马灯 -->
     <div class="carousel">
       <el-carousel :interval="5000" indicator-position="none">
         <el-carousel-item v-for="(img, index) in imgs" :key="index">
@@ -34,6 +34,18 @@
               <el-input class="password" v-model="pwd" placeholder="请输入密码">
                 <i slot="prefix" class="el-input__icon el-icon-lock"></i>
               </el-input>
+
+              <slide-verify
+                :l="42"
+                :r="10"
+                :w="270"
+                :h="155"
+                class="slide"
+                @success="onSuccess"
+                @fail="onFail"
+                @refresh="onRefresh"
+                :slider-text="text"
+              ></slide-verify>
             </div>
             <el-button @click="toHome">登录</el-button>
           </div>
@@ -73,15 +85,30 @@ export default {
         },
       ],
       callleft: 0,
+      msg: "",
+      text: "向右拖动滑块完成拼图",
     };
   },
   methods: {
     toHome() {
       this.$router.push("/home");
     },
+    onSuccess() {
+      this.msg = "成功";
+    },
+    onFail() {
+      this.msg = "";
+      this.onRefresh();
+    },
+    onRefresh() {
+      this.msg = "";
+    },
   },
 };
 </script>
 <style lang="scss" scoped>
 @import "@/style/login1.scss";
+.slide{
+  margin-top: 20px;
+}
 </style>

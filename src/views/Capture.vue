@@ -1,6 +1,10 @@
 <template>
   <div>
-    <div class="footer-btn">
+    <!-- 图片裁剪 -->
+    <div class="basic">
+      <div class="avatar">
+        <img :src="previews.url" style="width:100px;height:100px" />
+      </div>
       <div class="scope-btn">
         <el-button @click="dialogVisible = true">获取证件</el-button>
         <el-dialog
@@ -199,27 +203,15 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.cropper-content {
-  .cropper {
-    //   float: left;
-    width: 350px;
-    height: 300px;
-  }
-  .show-preview {
-    // justify-content: center;
-    // -webkit-justify-content: center;
-    .preview {
-      float: left;
-      overflow: hidden;
-      //   border-radius: 50%;
-      border: 1px solid #cccccc;
-      background: #cccccc;
-      //   margin-left: 40px;
-    }
-  }
-}
-.footer-btn {
+.basic {
   margin-top: 30px;
+  .avatar {
+    float: left;
+    margin-left: 200px;
+    width: 100px;
+    height: 100px;
+    border: 1px solid #409eff;
+  }
   .scope-btn {
     width: 350px;
   }
@@ -248,6 +240,25 @@ export default {
     color: #fff;
     background-color: #409eff;
     border-color: #409eff;
+  }
+  .cropper-content {
+    .cropper {
+      //   float: left;
+      width: 350px;
+      height: 300px;
+    }
+    .show-preview {
+      // justify-content: center;
+      // -webkit-justify-content: center;
+      .preview {
+        float: left;
+        overflow: hidden;
+        //   border-radius: 50%;
+        border: 1px solid #cccccc;
+        background: #cccccc;
+        //   margin-left: 40px;
+      }
+    }
   }
 }
 </style>

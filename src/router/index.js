@@ -13,6 +13,11 @@ import Navigation from "../views/Navigation.vue";
 import Capture from "../views/Capture.vue";
 import Photo from "../views/Photo.vue";
 import Shuttle from "../views/Shuttle.vue";
+import Upload from "../views/Upload.vue";
+import Cropper from "../views/Cropper.vue";
+import Map from "../views/Map.vue";
+import Region from "../views/Region.vue";
+import Verification from "../views/Verification.vue";
 
 Vue.use(VueRouter);
 
@@ -85,6 +90,31 @@ const routes = [
         name: "Shuttle",
         component: Shuttle,
       },
+      {
+        path: "/upload",
+        name: "Upload",
+        component: Upload,
+      },
+      {
+        path: "/cropper",
+        name: "Cropper",
+        component: Cropper,
+      },
+      {
+        path: "/map",
+        name: "Map",
+        component: Map,
+      },
+      {
+        path: "/region",
+        name: "Region",
+        component: Region,
+      },
+      {
+        path: "/verification",
+        name: "Verification",
+        component: Verification,
+      },
     ],
   },
 ];
@@ -94,9 +124,9 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
-const originalPush = VueRouter.prototype.push
+const originalPush = VueRouter.prototype.push;
 VueRouter.prototype.push = function push(location) {
-  return originalPush.call(this, location).catch(err => err)
-}
+  return originalPush.call(this, location).catch((err) => err);
+};
 
 export default router;
